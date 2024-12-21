@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pt.iade.games.gamedevedex.controllers.StudentController
 import pt.iade.games.gamedevedex.models.Project
+import pt.iade.games.gamedevedex.models.ProjectAsset
 import pt.iade.games.gamedevedex.models.Student
 import pt.iade.games.gamedevedex.ui.components.ProjectCard
 import pt.iade.games.gamedevedex.ui.theme.GamedevedexTheme
@@ -93,23 +94,41 @@ fun MainViewPreview() {
 
 fun ProjectExample(): Project {
     return Project(
-        title = "Among Us",
-        votes = 2,
-        description = "Super sus.",
-        id = 404,
+        id = 1,
+        title = "Detective Ribbit",
+        coverImageUri = R.drawable.logo1,
+        description = "This is a very descriptive description with lots of words...",
         semester = 1,
-        assets = listOf(
-            URI.create("https://lutris.net/media/games/screenshots/ss_649e19ff657fa518d4c2b45bed7ffdc4264a4b3a.jpg"),
-            URI.create("https://cdn.mobygames.com/screenshots/12341377-among-us-windows-calling-an-emergency-meeting.png"),
-        ),
-        groupMembers = listOf(
+        votes = 123,
+        students = listOf(
             Student(
                 id = 123,
-                name = "João Pedro",
-                biography = "Love playing Valorant. Currently thinking of switching courses.",
+                name = "Artur Nicolau",
+                biography = "Gay",
                 mood = "Lucky",
-                avatar = URI.create("https://media.gettyimages.com/photos/cristiano-ronaldo-of-portugal-poses-during-the-official-fifa-world-picture-id450555852?k=6&m=450555852&s=612x612&w=0&h=aUh0DVio_ubpFtCVvMv3WLR1MVPQji1sN5PDNKvHCT4=")
+                avatar = R.drawable.ic_student_icon
+            ),
+            Student(
+                id = 124,
+                name = " Diogo Carvalho",
+                biography = "Gambling",
+                mood = "Lucky",
+                avatar = R.drawable.screenshot_10
+            ),
+            Student(
+                id = 125,
+                name = "Anna-Maria Tsocheva",
+                biography = "Macedonian",
+                mood = "Lucky",
+                avatar = R.drawable.screenshot_9
             )
+        ),
+        assets = listOf(
+            ProjectAsset(R.drawable.megagamer, "Gameplay Screenshot 1"),
+            ProjectAsset(R.drawable.placeholder_cover_image, "Gameplay Screenshot 2 (srr got lazy)"),
+            ProjectAsset(R.drawable.frorg, "Main Character Art"),
+            ProjectAsset(R.drawable.bzzzbzzz, "Enemy Concepts"),
+            ProjectAsset(R.drawable.screenshot_31, "Level Design Map")
         )
     )
 }

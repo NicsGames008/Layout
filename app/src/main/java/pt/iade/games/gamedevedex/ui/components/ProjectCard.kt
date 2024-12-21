@@ -1,8 +1,6 @@
 package pt.iade.games.gamedevedex.ui.components
 
 import android.content.Intent
-import android.widget.Toast
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,7 +14,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -27,15 +24,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import pt.iade.games.gamedevedex.ProjectDetailActivity
+import pt.iade.games.gamedevedex.ProjectSingleton
 import pt.iade.games.gamedevedex.R
 import pt.iade.games.gamedevedex.models.Project
-import pt.iade.games.gamedevedex.models.Student
-import java.net.URI
 
 @Composable
 fun ProjectCard(
@@ -49,9 +44,9 @@ fun ProjectCard(
     Card(
         modifier = modifier.fillMaxWidth(),
         onClick = {
-            Toast.makeText(context, project.title,
-                Toast.LENGTH_SHORT).show()
+
             val intent = Intent(context, ProjectDetailActivity::class.java)
+            ProjectSingleton.definitelyDidntAskFilippo = project
             context.startActivity(intent)
         }
     ) {
@@ -61,7 +56,7 @@ fun ProjectCard(
                 .fillMaxWidth()
         ) {
             AsyncImage(
-                model = project.assets[0].toString(),
+                model = project.coverImageUri,
                 placeholder = painterResource(R.drawable.placeholder_cover_image),
                 contentDescription = "Cover image of the game",
                 modifier = Modifier.fillMaxSize(),
@@ -103,7 +98,7 @@ fun ProjectCard(
         }
     }
 }
-
+/*
 @Composable
 @Preview()
 fun ProjectCardPreview() {
@@ -111,48 +106,29 @@ fun ProjectCardPreview() {
         ProjectCard(
             modifier = Modifier.padding(vertical = 20.dp),
             project = Project(
-                title = "Among Us",
-                votes = 2,
-                description = "Super sus.",
-                id = 404,
+                id = 1,
+                title = "Awesome Game Project",
+                coverImageUri = URI.create("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Famogus.io%2Fassets%2Fimages%2Famogusio-share.png&f=1&nofb=1&ipt=dd73d28e17187dcdb31ae38463f404fb9292bafaf2def6779067ab4a91129789&ipo=images"),
+                description = "This is a very descriptive description with lots of words...",
                 semester = 1,
-                assets = listOf(
-                    URI.create("https://cdn.mobygames.com/screenshots/12341377-among-us-windows-calling-an-emergency-meeting.png"),
-                    URI.create("https://lutris.net/media/games/screenshots/ss_649e19ff657fa518d4c2b45bed7ffdc4264a4b3a.jpg")
-                ),
-                groupMembers = listOf(
-                    Student(
-                        id = 123,
-                        name = "João Pedro",
-                        biography = "Love playing Valorant. Currently thinking of switching courses.",
-                        mood = "Lucky",
-                        avatar = URI.create("https://media.gettyimages.com/photos/cristiano-ronaldo-of-portugal-poses-during-the-official-fifa-world-picture-id450555852?k=6&m=450555852&s=612x612&w=0&h=aUh0DVio_ubpFtCVvMv3WLR1MVPQji1sN5PDNKvHCT4=")
-                    )
-                )
-            )
-        )
-        ProjectCard(
-            modifier = Modifier.padding(vertical = 20.dp),
-            project = Project(
-                title = "Zelda: Twilight Princess",
                 votes = 123,
-                description = "The best Wii game ever made. Apart from Super Smash Bros.",
-                id = 404,
-                semester = 1,
-                assets = listOf(
-                    URI.create("https://cdn.mobygames.com/screenshots/12341377-among-us-windows-calling-an-emergency-meeting.png"),
-                    URI.create("https://lutris.net/media/games/screenshots/ss_649e19ff657fa518d4c2b45bed7ffdc4264a4b3a.jpg")
-                ),
-                groupMembers = listOf(
+                students = listOf(
                     Student(
                         id = 123,
                         name = "João Pedro",
                         biography = "Love playing Valorant. Currently thinking of switching courses.",
                         mood = "Lucky",
-                        avatar = URI.create("https://media.gettyimages.com/photos/cristiano-ronaldo-of-portugal-poses-during-the-official-fifa-world-picture-id450555852?k=6&m=450555852&s=612x612&w=0&h=aUh0DVio_ubpFtCVvMv3WLR1MVPQji1sN5PDNKvHCT4=")
+                        avatar = R.drawable.ic_student_icon
                     )
+                ),
+                assets = listOf(
+                    ProjectAsset("file:///android_asset/screenshot1.png", "Gameplay Screenshot 1"),
+                    ProjectAsset("file:///android_asset/screenshot2.png", "Gameplay Screenshot 2"),
+                    ProjectAsset("file:///android_asset/screenshot3.png", "Main Character Art"),
+                    ProjectAsset("file:///android_asset/screenshot4.png", "Enemy Concepts"),
+                    ProjectAsset("file:///android_asset/screenshot5.png", "Level Design Map")
                 )
             )
         )
     }
-}
+}*/
